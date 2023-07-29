@@ -16,6 +16,8 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Kien
  */
 @Controller
+//sd cho controller khac
+@ControllerAdvice
 @PropertySource("classpath:configs.properties")
 public class IndexController {
 //    @Autowired
@@ -35,6 +39,12 @@ public class IndexController {
     private CategoryService categoryService;
     @Autowired
     private Environment env;
+    
+    //attribute 
+    @ModelAttribute
+    public void commonAttri(Model model){
+         model.addAttribute("categories", this.categoryService.getCates());
+    }
 
 //    @RequestMapping("/") 
 //    @Transactional
@@ -49,7 +59,7 @@ public class IndexController {
     @RequestMapping("/")
     public String index(Model model, @RequestParam Map<String, String> params) {
         model.addAttribute("products", this.productService.getProducts(params));
-        model.addAttribute("categories", this.categoryService.getCates());
+       
 
         int pageSize = Integer.parseInt(this.env.getProperty("PAGE_SIZE"));
         int count = this.productService.countProduct();
