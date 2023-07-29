@@ -12,10 +12,7 @@
 <!--enctype="multipart/form-data" de upload-->
 <form:form modelAttribute="product" method="post" enctype="multipart/form-data">
     <!--path tro den column name cua product-->
-    <div class="form-floating mb-3 mt-3">
-        <form:input type="text" class="form-control" path="name" id="name" placeholder="Ten san pham" name="email"/>
-        <label for="name">Ten san pham</label>
-    </div>
+   
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="name" id="name" placeholder="Ten san pham" name="email"/>
         <label for="name">Ten san pham</label>
